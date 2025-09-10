@@ -44,6 +44,7 @@ export const updateProduct = async (req, res) => {
             formData.image = image
         }
         await Product.findByIdAndUpdate(id, formData)
+        return res.status(200).json({message : "Product Updated"})
     } catch (error) {
         console.log(error)
         return res.status(500).json({message : "Server error"})
