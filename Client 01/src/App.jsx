@@ -1,13 +1,24 @@
-import React from 'react'
-import ProductAdd from './components/ProductAdd'
-  import { ToastContainer } from 'react-toastify';
+import React from "react";
+import ProductAdd from "./components/ProductAdd";
+import { ToastContainer } from "react-toastify";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./components/Home";
+import ProductList from "./components/ProductList";
+import Navbar from "./components/Navbar";
 function App() {
   return (
     <div>
-      <ProductAdd/>
-      <ToastContainer/>
+      <BrowserRouter>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/addproduct" element={<ProductAdd />} />
+          <Route path="/productlist" element={<ProductList />} />
+        </Routes>
+        <ToastContainer />
+      </BrowserRouter>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
