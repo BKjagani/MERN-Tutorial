@@ -31,6 +31,11 @@ function Navbar() {
                   Prouct List
                 </Link>
               </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/producttable">
+                  Prouct Table
+                </Link>
+              </li>
             </ul>
           </div>
         </div>

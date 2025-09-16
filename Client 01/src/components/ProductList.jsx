@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+
+import { fetchData } from "../utils/api";
 
 function ProductList() {
-  const PRODUCT_GET_API = "http://127.0.0.1:3000/api/getproduct";
-  const IMAGE_URL = "http://127.0.0.1:3000/uploads"
+  const IMAGE_URL = "http://127.0.0.1:3000/uploads";
   const [productList, setProductList] = useState([]);
+
   useEffect(() => {
-    async function fetchData() {
-      const response = await axios.get(PRODUCT_GET_API);
-      setProductList(response.data.products);
-    }
-    fetchData()
+    const main = async () => {
+      const response = await fetchData();
+      setProductList(response);
+    };
+    main();
   }, []);
 
   return (
@@ -21,12 +22,15 @@ function ProductList() {
             productList.map((product) => (
               <div className="col-3 my-2" key={product._id}>
                 <div className="card" style={{ width: "18rem" }}>
-                  <img src={`${IMAGE_URL}/${product.image}`} className="card-img-top" alt="..."  style={{height : "200px"}} />
+                  <img
+                    src={`${IMAGE_URL}/${product.image}`}
+                    className="card-img-top"
+                    alt="..."
+                    style={{ height: "200px" }}
+                  />
                   <div className="card-body">
                     <h5 className="card-title">{product.title}</h5>
-                    <p className="card-text">
-                     {product.description}
-                    </p>
+                    <p className="card-text">{product.description}</p>
                     <h5>Price : {product.price}</h5>
                     <a href="#" className="btn btn-primary">
                       Go somewhere
