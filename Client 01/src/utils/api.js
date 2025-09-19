@@ -29,7 +29,11 @@ export async function deleteProduct(id) {
 
 export async function updateProduct(id, obj) {
   try {
-    const response = await axios.put(`${UPDATE_PRODUCT_API}/${id}`, obj)
+    const response = await axios.put(`${UPDATE_PRODUCT_API}/${id}`, obj, {
+      headers : {
+        "Content-Type" : "multipart/form-data"
+      }
+    })
     return response.data
   } catch (error) {
     console.log(error)

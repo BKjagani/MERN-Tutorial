@@ -9,6 +9,6 @@ router.get('/getproduct', getProduct)
 
 router.delete('/deleteproduct/:id', deleteProduct)
 
-router.put('/updateproduct/:id', upload.single('image') ,updateProduct)
+router.put('/updateproduct/:id', upload.single('image'), updateProduct)
 
 export default router;

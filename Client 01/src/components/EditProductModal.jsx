@@ -27,8 +27,14 @@ function EditProductModal({editObj, isEdit, setIsEdit, setRefresh}) {
   }
 
   useEffect(() => {
-    setFormData({title : editObj.title, description : editObj.description, price : editObj.price})
-    setIsEdit(false)
+     if (isEdit && editObj) {
+    setFormData({
+      title: editObj.title ?? "",
+      description: editObj.description ?? "",
+      price: editObj.price ?? ""
+    });
+    setIsEdit(false);
+  }
   }, [isEdit])
 
   return (
