@@ -7,6 +7,7 @@ function ProductTable() {
   const [productList, setProductList] = useState([]);
   const [refresh, setRefresh] = useState(false);
   const [editObj, setEditObj] = useState({})
+  const [isEdit, setIsEdit] = useState(false)
 
   useEffect(() => {
     const main = async () => {
@@ -25,6 +26,7 @@ function ProductTable() {
   function handleUpdate(id){
    const obj = productList.find((ele) => ele._id === id)
    setEditObj(obj)
+   setIsEdit(true)
   }
 
   return (
@@ -83,7 +85,7 @@ function ProductTable() {
                   })}
               </tbody>
             </table>
-            <EditProductModal  editObj={editObj}/>
+            <EditProductModal  editObj={editObj} isEdit={isEdit} setIsEdit={setIsEdit} setRefresh={setRefresh}/>
           </div>
         </div>
       </div>

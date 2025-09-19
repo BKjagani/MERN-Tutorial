@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { updateProduct } from "../utils/api"; 
 
-function EditProductModal({editObj}) {
-    console.log(editObj)
-  const POST_PRODUCT_API = "http://localhost:3000/api/updateproduct";
+function EditProductModal({editObj, isEdit, setIsEdit, setRefresh}) {
+  
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -20,9 +20,16 @@ function EditProductModal({editObj}) {
 
   async function handleSubmit(e) {
     e.preventDefault();
+    await updateProduct(editObj._id, {...formData, image})
+    setRefresh((true))
     try {
     } catch (error) {}
   }
+
+  useEffect(() => {
+    setFormData({title : editObj.title, description : editObj.description, price : editObj.price})
+    setIsEdit(false)
+  }, [isEdit])
 
   return (
     <div>
@@ -94,7 +101,7 @@ function EditProductModal({editObj}) {
                     required
                   />
                 </div>
-                <button type="submit" className="btn btn-success">
+                <button type="submit" className="btn btn-success" data-bs-dismiss="modal">
                   Submit
                 </button>
                 <button

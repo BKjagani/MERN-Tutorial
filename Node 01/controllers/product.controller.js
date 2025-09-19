@@ -37,8 +37,9 @@ export const deleteProduct = async (req, res) => {
 export const updateProduct = async (req, res) => {
     try {
         const {id} = req.params
-        const {title, description, price} = req.body
-        const image = req?.file?.filename
+        const {title, description, price} = req.body;
+        const image = req?.file?.filename;
+        console.log(req.file)
         const formData = {title, description, price}
         if(image){
             formData.image = image
